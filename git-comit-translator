@@ -9,12 +9,14 @@ echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 echo !!      DIGITE SEU COMMIT EM PTBR    !!!!!
 echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 echo 
-read $commit 
+read commit 
 echo
 echo      TRADUZINDO...          
 echo 
 
-googleRequestResponse=$(curl -s -X POST -H "Content-Type: application/json" \
+echo $commit
+
+$googleRequestResponse=$(curl -s -X POST -H "Content-Type: application/json" \
     --data "{
   'q': '$commit',
   'source': 'pt-BR',
