@@ -16,7 +16,7 @@ echo
 
 echo $commit
 
-$googleRequestResponse=$(curl -s -X POST -H "Content-Type: application/json" \
+googleRequestResponse=$(curl -s -X POST -H "Content-Type: application/json" \
     --data "{
   'q': '$commit',
   'source': 'pt-BR',
@@ -36,9 +36,9 @@ echo !!       git add --all       !!!!
 git add --all
 
 echo !!!!!!!!!!      Commiting  !!!!!!!!!!!!!!         
-echo !!       git commit -m $googleRequestResponse       !!!!
+echo !!       git commit -m "$googleRequestResponse"       !!!!
 
-git commit -m $googleRequestResponse
+git commit -m "$googleRequestResponse"
 
 echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 echo !!DIGITE O BRANCH - padrão digite ENTER !!
