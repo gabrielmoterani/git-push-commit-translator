@@ -1,35 +1,58 @@
 #!/bin/bash
+# Need to install JQ
 source api_keys.sh
 echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 echo !!       GIT TRANSLATOR PUSH         !!!!!
 echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-
 echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 echo !!      DIGITE SEU COMMIT EM PTBR    !!!!!
 echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
+echo 
 read $commit 
-
-echo   $private_key
-
+echo
 echo      TRADUZINDO...          
+echo 
 
-
-curl -s -X POST -H "Content-Type: application/json" \
+googleRequestResponse=$(curl -s -X POST -H "Content-Type: application/json" \
     --data "{
-  'q': 'The Great Pyramid of Giza (also known as the Pyramid of Khufu or the
-        Pyramid of Cheops) is the oldest and largest of the three pyramids in
-        the Giza pyramid complex.',
-  'source': 'en',
-  'target': 'es',
+  'q': '$commit',
+  'source': 'pt-BR',
+  'target': 'en',
   'format': 'text'
-}" "https://translation.googleapis.com/language/translate/v2?key=AIzaSyDIMJgeVdtQCZ515gCkwuxGVC5hXk55KC0"
-  
+}" "https://translation.googleapis.com/language/translate/v2?key=AIzaSyDIMJgeVdtQCZ515gCkwuxGVC5hXk55KC0" | jq '.data.translations[].translatedText')
 
+echo 
+echo
+echo "Resultado da Tradução"  
+echo
+echo $googleRequestResponse
 
-# echo       Adding all           
-# echo 
-# echo ->       git add --all       <-
+echo !!!!!!!!!!      Adding all   !!!!!!!!!!!!!!         
+echo !!       git add --all       !!!!
 
-# git add all
+git add --all
+
+echo !!!!!!!!!!      Commiting  !!!!!!!!!!!!!!         
+echo !!       git commit -m $googleRequestResponse       !!!!
+
+git commit -m $googleRequestResponse
+
+echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+echo !!DIGITE O BRANCH - padrão digite ENTER !!
+echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+echo 
+
+read $origin 
+
+echo
+echo !!!!!!! Pushing !!!!!!!!!!!
+
+if [ "$origin" != null ]
+  then
+    echo !! git push origin $origin !!
+    git push origin $origin
+  else 
+    echo !! git push  !!
+    git push 
+fi
