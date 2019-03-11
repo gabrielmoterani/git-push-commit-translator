@@ -29,9 +29,19 @@ $ apt install jq
 
 * 3 - Copie o Token API para o arquivo api_keys.sh
 
-* Adicione o código no seu PATH
+* 4 Mova os arquivos para ~/bin
 
+* 5 Adicione a seguinte linha ao /.bashrc 
+```sh
+$ export PATH=$PATH:~/bin
+```
+* 6 Altere as permições do arquivo translateAndPush para 755
 
+```sh
+$ chmod 755 ~/bin/translateAndPush 
+```
+
+Utilize o comando translateAndPush para fazer o deploy para o git.
 
 
 [JQ]: <https://stedolan.github.io/jq/>
