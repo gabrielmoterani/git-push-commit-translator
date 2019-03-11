@@ -6,7 +6,7 @@
  
  Este script fará todo o processo de adicionar todas as mudanças, commitar, traduzir o commit para ingles e subir para o banch selecionado.
  
- #PORQUE TRADUZIR?
+# PORQUE TRADUZIR?
  
   Apesar de qualquer linguagem de programação ser escrita em ingles, alguns desenvolvedores ainda tem dificuldade de se expressar nesta lingua. Sendo que em nossa lingua nativa temos muito mais vocabulário e facilidade para nos expressarmos.
   O objetivo deste script é tornar os commits mais simplificados, possibilitando uma melhor descrição das mudanças e mantendo todo o escopo em ingles. 
