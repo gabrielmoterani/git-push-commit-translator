@@ -48,7 +48,7 @@ read $origin
 echo
 echo !!!!!!! Pushing !!!!!!!!!!!
 
-if [ "$origin" != null ]
+if [ "$origin" != "" ]
   then
     echo !! git push origin $origin !!
     git push origin $origin
